@@ -48,6 +48,13 @@ set scrolloff=5
 set sidescrolloff=5
 set spelllang=en_gb
 
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 let &undodir=stdpath('data') . '/undo'
 set undofile
 set undolevels=5000
