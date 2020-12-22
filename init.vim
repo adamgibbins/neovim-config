@@ -33,9 +33,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 set termguicolors
-colorscheme one
+let g:one_allow_italics = 1
 set bg=dark
 set t_Co=256
+colorscheme one
 
 set updatetime=300
 set hidden
@@ -85,6 +86,7 @@ let g:coc_global_extensions = [ 'coc-json', 'coc-python', 'coc-html', 'coc-css',
 " let g:deoplete#enable_at_startup = 1
 
 let g:lightline = {
+  \  'colorscheme': 'one',
   \  'active': {
   \    'left': [
   \      [ 'mode', 'paste' ],
