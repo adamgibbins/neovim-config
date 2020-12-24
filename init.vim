@@ -3,6 +3,11 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
+if has('nvim')
+  " Neovim is already sane
+  let g:polyglot_disabled = ['sensible']
+endif
+
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'rakr/vim-one'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
