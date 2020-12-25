@@ -37,10 +37,8 @@ Plug 'tpope/vim-endwise', { 'for': ['lua', 'ruby', 'vim', 'sh', 'zsh', 'make'] }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-set termguicolors
 let g:one_allow_italics = 1
 set bg=dark
-set t_Co=256
 colorscheme one
 
 set updatetime=300
