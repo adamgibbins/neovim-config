@@ -35,6 +35,7 @@ Plug 'mbbill/undotree'
 Plug 'janko/vim-test'
 Plug 'tpope/vim-endwise', { 'for': ['lua', 'ruby', 'vim', 'sh', 'zsh', 'make'] }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rodjek/vim-puppet'
 call plug#end()
 
 let g:one_allow_italics = 1
