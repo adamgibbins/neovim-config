@@ -9,7 +9,7 @@ if has('nvim')
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'stevedylandev/flexoki-nvim'
+Plug 'kepano/flexoki', {'rtp': 'neovim'}
 Plug 'rakr/vim-one'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-sleuth'
