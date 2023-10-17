@@ -16,7 +16,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-signify'
 Plug 'sheerun/vim-polyglot'
-Plug 'wakatime/vim-wakatime'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
