@@ -9,6 +9,7 @@ if has('nvim')
 endif
 
 call plug#begin(stdpath('data') . '/plugged')
+Plug 'stevedylandev/flexoki-nvim'
 Plug 'rakr/vim-one'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-sleuth'
@@ -39,8 +40,8 @@ Plug 'rodjek/vim-puppet'
 call plug#end()
 
 let g:one_allow_italics = 1
-set bg=dark
-colorscheme one
+set bg=light
+colorscheme "flexoki-light"
 
 set updatetime=300
 set hidden
