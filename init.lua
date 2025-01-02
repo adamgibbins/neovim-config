@@ -40,11 +40,11 @@ require("lazy").setup({
   { "tpope/vim-fugitive" },
   { "HiPhish/rainbow-delimiters.nvim" },
   { "tpope/vim-endwise" },
-  { "kepano/flexoki-neovim",
+  { "nuvic/flexoki-nvim",
     lazy = false,
     priority = 1000,
     config = function(plugin)
-      vim.cmd("colorscheme flexoki-light")
+      vim.cmd("colorscheme flexoki")
     end
   },
   { "ibhagwan/fzf-lua",
