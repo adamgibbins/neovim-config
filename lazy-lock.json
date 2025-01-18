@@ -16,5 +16,6 @@
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "77e5bad54227dcfe3878ffbda88ab1efdaacb475" },
   "vim-endwise": { "branch": "master", "commit": "5ec72eef1a07fb32af9be5402144678f68cb1a7a" },
   "vim-fugitive": { "branch": "master", "commit": "174230d6a7f2df94705a7ffd8d5413e27ec10a80" },
+  "vim-jjdescription": { "branch": "main", "commit": "b94c5062d52b4bb2416a113fa13d8ef7153094b8" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" }
 }
