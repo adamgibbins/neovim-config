@@ -41,6 +41,7 @@ require("lazy").setup({
   { "HiPhish/rainbow-delimiters.nvim" },
   { "tpope/vim-endwise" },
   { "avm99963/vim-jjdescription" },
+  { "NoahTheDuke/vim-just" },
   { "nuvic/flexoki-nvim",
     lazy = false,
     priority = 1000,

@@ -17,5 +17,6 @@
   "vim-endwise": { "branch": "master", "commit": "f6a32fbe4d4e511d446ac189e926f8e24f69cc1e" },
   "vim-fugitive": { "branch": "master", "commit": "4a745ea72fa93bb15dd077109afbb3d1809383f2" },
   "vim-jjdescription": { "branch": "main", "commit": "b94c5062d52b4bb2416a113fa13d8ef7153094b8" },
+  "vim-just": { "branch": "main", "commit": "0eeb7b760ca603be517d4f34a9d1c08c73f93f3f" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" }
 }
