@@ -74,7 +74,13 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.config").setup({
-        ensure_installed = "all",
+        ensure_installed = {
+          "bash", "c", "cpp", "css", "gitcommit", "gitignore",
+          "go", "html", "javascript", "json", "just", "lua",
+          "markdown", "markdown_inline", "python", "query",
+          "regex", "ruby", "rust", "toml", "tsx", "typescript",
+          "vim", "vimdoc", "yaml",
+        },
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = { "gitcommit" },
@@ -100,6 +106,40 @@ require("lazy").setup({
     main = "ibl",
     config = function()
       require("ibl").setup()
+    end
+  },
+  { "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end
+  },
+  { "neovim/nvim-lspconfig" },
+  { "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      local lspconfig = require("lspconfig")
+      local on_attach = function(_, bufnr)
+        local opts = { buffer = bufnr, silent = true }
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float, opts)
+        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+      end
+      require("mason-lspconfig").setup({
+        ensure_installed = {},
+        automatic_installation = false,
+        handlers = {
+          function(server_name)
+            lspconfig[server_name].setup({ on_attach = on_attach })
+          end,
+        },
+      })
     end
   },
 })
