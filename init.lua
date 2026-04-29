@@ -72,8 +72,7 @@ require("lazy").setup({
   { "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-      local configs = require("nvim-treesitter.configs")
-      configs.setup({
+      require("nvim-treesitter.config").setup({
         ensure_installed = "all",
         highlight = {
           enable = true,
