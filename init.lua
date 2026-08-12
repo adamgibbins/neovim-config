@@ -42,6 +42,7 @@ require("lazy").setup({
   { "tpope/vim-endwise" },
   { "avm99963/vim-jjdescription" },
   { "NoahTheDuke/vim-just" },
+  { "nathangrigg/vim-beancount" },
   { "nuvic/flexoki-nvim",
     lazy = false,
     priority = 1000,
