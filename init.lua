@@ -70,10 +70,10 @@ require("lazy").setup({
     end
   },
   { "nvim-treesitter/nvim-treesitter",
-    branch = "main",
+    branch = "master",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.config").setup({
+      require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "bash", "c", "cpp", "css", "gitcommit", "gitignore",
           "go", "html", "javascript", "json", "just", "lua",
