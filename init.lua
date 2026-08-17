@@ -78,7 +78,7 @@ require("lazy").setup({
         ensure_installed = {
           "bash", "c", "cpp", "css", "gitcommit", "gitignore",
           "go", "html", "javascript", "json", "just", "lua",
-          "markdown", "markdown_inline", "python", "query",
+          "markdown", "markdown_inline", "puppet", "python", "query",
           "regex", "ruby", "rust", "toml", "tsx", "typescript",
           "vim", "vimdoc", "yaml",
         },
