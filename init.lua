@@ -1,5 +1,7 @@
 vim.g.mapleader = ","
 
+vim.filetype.add({ extension = { tmpl = "gotmpl" } })
+
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
@@ -75,13 +77,8 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "bash", "c", "cpp", "css", "gitcommit", "gitignore",
-          "go", "html", "javascript", "json", "just", "lua",
-          "markdown", "markdown_inline", "puppet", "python", "query",
-          "regex", "ruby", "rust", "toml", "tsx", "typescript",
-          "vim", "vimdoc", "yaml",
-        },
+        ensure_installed = "all",
+        ignore_install = { "norg" },
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = { "gitcommit" },
