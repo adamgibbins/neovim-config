@@ -73,19 +73,18 @@ require("lazy").setup({
     end
   },
   { "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    branch = "main",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = "all",
-        ignore_install = { "norg" },
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = { "gitcommit" },
-        },
-        indent = {
-          enable = true,
-        },
+      require("nvim-treesitter").install("all")
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local ok = pcall(vim.treesitter.start)
+          if not ok then
+            return
+          end
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
       })
     end
   },
