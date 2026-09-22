@@ -23,6 +23,8 @@ vim.opt.smartcase = true
 vim.opt.scrolloff = 20
 vim.opt.sidescrolloff = 5
 
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
@@ -94,48 +96,42 @@ require("lazy").setup({
       require("nvim-surround").setup()
     end
   },
-  { "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end
-  },
   { "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     config = function()
       require("ibl").setup()
     end
   },
-  { "williamboman/mason.nvim",
+  { "neovim/nvim-lspconfig",
     config = function()
-      require("mason").setup()
-    end
-  },
-  { "neovim/nvim-lspconfig" },
-  { "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
-    config = function()
-      local lspconfig = require("lspconfig")
-      local on_attach = function(_, bufnr)
-        local opts = { buffer = bufnr, silent = true }
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
-        vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float, opts)
-        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-      end
-      require("mason-lspconfig").setup({
-        ensure_installed = {},
-        automatic_installation = false,
-        handlers = {
-          function(server_name)
-            lspconfig[server_name].setup({ on_attach = on_attach })
-          end,
-        },
+      -- server binaries are managed externally (mise/dotfiles), not by nvim
+      vim.lsp.enable({ "bashls", "beancount", "pyright", "ruby_lsp" })
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client and client:supports_method("textDocument/completion") then
+            -- trigger on identifier characters too, not just the server's punctuation triggers
+            local triggers = client.server_capabilities.completionProvider.triggerCharacters or {}
+            for _, c in ipairs({ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_" }) do
+              for i = 1, #c do
+                table.insert(triggers, c:sub(i, i))
+              end
+            end
+            client.server_capabilities.completionProvider.triggerCharacters = triggers
+            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+          end
+          local opts = { buffer = args.buf, silent = true }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
+          vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
+          vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float, opts)
+          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+          vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+        end,
       })
     end
   },
