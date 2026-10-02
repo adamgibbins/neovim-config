@@ -48,7 +48,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { "tpope/vim-sleuth" },
-  { "christoomey/vim-tmux-navigator" },
+  { "christoomey/vim-tmux-navigator",
+    init = function()
+      vim.g.tmux_navigator_no_mappings = 1
+    end,
+    keys = {
+      { "<M-h>", "<cmd>TmuxNavigateLeft<cr>" },
+      { "<M-j>", "<cmd>TmuxNavigateDown<cr>" },
+      { "<M-k>", "<cmd>TmuxNavigateUp<cr>" },
+      { "<M-l>", "<cmd>TmuxNavigateRight<cr>" },
+      { "<M-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
+    },
+  },
   { "github/copilot.vim" },
   { "dense-analysis/ale",
     init = function()
