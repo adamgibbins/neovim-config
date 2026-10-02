@@ -39,6 +39,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { "tpope/vim-sleuth" },
+  { "christoomey/vim-tmux-navigator" },
   { "github/copilot.vim" },
   { "dense-analysis/ale" },
   { "tpope/vim-fugitive" },
