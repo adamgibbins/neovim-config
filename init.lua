@@ -41,7 +41,11 @@ require("lazy").setup({
   { "tpope/vim-sleuth" },
   { "christoomey/vim-tmux-navigator" },
   { "github/copilot.vim" },
-  { "dense-analysis/ale" },
+  { "dense-analysis/ale",
+    init = function()
+      vim.g.ale_disable_lsp = 1
+    end
+  },
   { "tpope/vim-fugitive" },
   { "HiPhish/rainbow-delimiters.nvim" },
   { "tpope/vim-endwise" },
