@@ -110,7 +110,12 @@ require("lazy").setup({
   { "neovim/nvim-lspconfig",
     config = function()
       -- server binaries are managed externally (mise/dotfiles), not by nvim
-      vim.lsp.enable({ "bashls", "beancount", "pyright", "ruby_lsp" })
+      vim.lsp.enable({
+        "bashls", "beancount", "cssls", "docker_language_server", "eslint",
+        "gopls", "harper_ls", "helm_ls", "html", "jsonls", "just", "lua_ls", "markdown_oxide",
+        "pyright", "ruby_lsp", "ruff", "rust_analyzer", "terraformls",
+        "tombi", "tsc", "yamlls",
+      })
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
