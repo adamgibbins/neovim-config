@@ -25,6 +25,15 @@ vim.opt.sidescrolloff = 5
 
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
 
+-- Remove background so terminal transparency works
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    for _, group in ipairs({ "Normal", "NonText", "LineNr", "SignColumn" }) do
+      vim.api.nvim_set_hl(0, group, { bg = "NONE" })
+    end
+  end,
+})
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
@@ -143,9 +152,3 @@ vim.keymap.set("n", ";", ":")
 vim.keymap.set("n", "<Leader>,", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 vim.keymap.set("n", "<Leader>ss", "<cmd>setlocal spell!<CR>")
 vim.keymap.set("n", "<Leader>tn", "<cmd>tabnew<CR>")
-
--- Remove background so terminal transparency works
-vim.cmd("highlight Normal ctermbg=NONE guibg=NONE")
-vim.cmd("highlight NonText ctermbg=NONE guibg=NONE")
-vim.cmd("highlight LineNr ctermbg=NONE guibg=NONE")
-vim.cmd("highlight SignColumn ctermbg=NONE guibg=NONE")
