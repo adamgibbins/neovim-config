@@ -64,7 +64,6 @@ require("lazy").setup({
       { "<M-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
     },
   },
-  { "github/copilot.vim" },
   { "stevearc/conform.nvim",
     event = "BufWritePre",
     cmd = "ConformInfo",
@@ -142,7 +141,7 @@ require("lazy").setup({
     config = function()
       -- server binaries are managed externally (mise/dotfiles), not by nvim
       vim.lsp.enable({
-        "bashls", "beancount", "cssls", "docker_language_server", "eslint",
+        "bashls", "beancount", "copilot", "cssls", "docker_language_server", "eslint",
         "gopls", "harper_ls", "helm_ls", "html", "jsonls", "just", "lua_ls", "markdown_oxide",
         "pyright", "ruby_lsp", "ruff", "rust_analyzer", "terraformls",
         "tombi", "tsc", "yamlls",
@@ -158,6 +157,12 @@ require("lazy").setup({
           vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         end,
       })
+      vim.lsp.inline_completion.enable()
+      vim.keymap.set("i", "<Tab>", function()
+        if not vim.lsp.inline_completion.get() then
+          return "<Tab>"
+        end
+      end, { expr = true })
     end
   },
 })
