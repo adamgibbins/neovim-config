@@ -25,6 +25,8 @@ vim.opt.sidescrolloff = 5
 
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
 
+vim.diagnostic.config({ virtual_text = true })
+
 -- Remove background so terminal transparency works
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
