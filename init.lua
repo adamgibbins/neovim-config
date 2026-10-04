@@ -5,7 +5,6 @@ vim.filetype.add({ extension = { tmpl = "gotmpl" } })
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.opt.smartindent = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -13,7 +12,6 @@ vim.opt.relativenumber = true
 vim.opt.spelllang = "en_gb"
 vim.opt.spell = true
 
-vim.opt.undodir = vim.fn.expand "~/.cache/nvim/undo"
 vim.opt.undolevels = 5000
 vim.opt.undofile = true
 
