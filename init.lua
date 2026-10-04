@@ -24,6 +24,8 @@ vim.opt.scrolloff = 20
 vim.opt.sidescrolloff = 5
 
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
+vim.opt.complete:prepend("o")
+vim.opt.autocomplete = true
 
 vim.diagnostic.config({ virtual_text = true })
 
@@ -149,15 +151,7 @@ require("lazy").setup({
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if client and client:supports_method("textDocument/completion") then
-            -- trigger on identifier characters too, not just the server's punctuation triggers
-            local triggers = client.server_capabilities.completionProvider.triggerCharacters or {}
-            for _, c in ipairs({ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_" }) do
-              for i = 1, #c do
-                table.insert(triggers, c:sub(i, i))
-              end
-            end
-            client.server_capabilities.completionProvider.triggerCharacters = triggers
-            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+            vim.lsp.completion.enable(true, client.id, args.buf)
           end
           local opts = { buffer = args.buf, silent = true }
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
