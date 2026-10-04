@@ -22,6 +22,8 @@ vim.opt.smartcase = true
 vim.opt.scrolloff = 20
 vim.opt.sidescrolloff = 5
 
+vim.opt.foldlevelstart = 99
+
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
 vim.opt.complete:prepend("o")
 vim.opt.autocomplete = true
@@ -126,6 +128,8 @@ require("lazy").setup({
             return
           end
           vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          vim.wo.foldmethod = "expr"
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end,
       })
     end
