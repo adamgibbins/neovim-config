@@ -115,11 +115,11 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter").install({
-        "bash", "beancount", "css", "diff", "dockerfile", "git_config", "gitcommit",
-        "go", "gomod", "gosum", "gotmpl", "hcl", "helm", "html", "javascript", "jsdoc",
-        "json", "just", "lua", "luadoc", "markdown", "markdown_inline", "python", "query",
-        "regex", "ruby", "rust", "terraform", "toml", "tsx", "typescript", "vim", "vimdoc",
-        "yaml",
+        "bash", "beancount", "css", "diff", "dockerfile", "editorconfig", "git_config",
+        "gitcommit", "gitignore", "go", "gomod", "gosum", "gotmpl", "hcl", "helm", "html",
+        "javascript", "jsdoc", "json", "just", "kdl", "lua", "luadoc", "markdown",
+        "markdown_inline", "nix", "nu", "python", "query", "regex", "ruby", "rust",
+        "terraform", "toml", "tsx", "typescript", "vim", "vimdoc", "yaml", "zsh",
       })
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
