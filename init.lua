@@ -157,6 +157,7 @@ require("lazy").setup({
   { "neovim/nvim-lspconfig",
     config = function()
       -- server binaries are managed externally (mise/dotfiles), not by nvim
+      vim.lsp.config("harper_ls", { settings = vim.empty_dict() })
       vim.lsp.enable({
         "bashls", "beancount", "copilot", "cssls", "docker_language_server", "eslint",
         "gopls", "harper_ls", "helm_ls", "html", "jsonls", "just", "lua_ls", "markdown_oxide",
