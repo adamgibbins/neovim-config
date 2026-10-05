@@ -158,6 +158,18 @@ require("lazy").setup({
     config = function()
       -- server binaries are managed externally (mise/dotfiles), not by nvim
       vim.lsp.config("harper_ls", { settings = vim.empty_dict() })
+      vim.lsp.config("beancount", {
+        before_init = function(params, config)
+          local journal = config.root_dir .. "/main.beancount"
+          local bean_check = config.root_dir .. "/.venv/bin/bean-check"
+          if vim.uv.fs_stat(journal) then
+            params.initializationOptions.journal_file = journal
+          end
+          if vim.uv.fs_stat(bean_check) then
+            params.initializationOptions.bean_check = { method = "system", bean_check_cmd = bean_check }
+          end
+        end,
+      })
       vim.lsp.enable({
         "bashls", "beancount", "copilot", "cssls", "docker_language_server", "eslint",
         "gopls", "harper_ls", "helm_ls", "html", "jsonls", "just", "lua_ls", "markdown_oxide",
