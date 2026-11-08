@@ -1,4 +1,5 @@
 vim.g.mapleader = ","
+vim.g.python3_host_prog = vim.fn.stdpath("data") .. "/python-host/bin/python"
 
 vim.filetype.add({ extension = { tmpl = "gotmpl" } })
 
